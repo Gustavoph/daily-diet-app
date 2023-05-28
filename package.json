@@ -21,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@rocketseat/eslint-config": "^1.2.0",
+    "@types/styled-components": "^5.1.26",
     "eslint": "^8.41.0"
   },
   "private": true
