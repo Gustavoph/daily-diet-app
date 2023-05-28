@@ -8,7 +8,7 @@ import {
   NunitoSans_400Regular as NunitoSans400Regular,
 } from '@expo-google-fonts/nunito-sans'
 
-import theme from './src/themes/default'
+import theme from '@themes/default'
 
 export default function App() {
   const [isLoaded] = useFonts({
