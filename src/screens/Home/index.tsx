@@ -12,6 +12,10 @@ export function Home() {
     navigation.navigate('details')
   }
 
+  function handleAddNewMeal() {
+    navigation.navigate('new')
+  }
+
   return (
     <S.HomeContainer>
       <S.HomeHeader>
@@ -25,7 +29,7 @@ export function Home() {
         <S.MealsContainer>
           <Text size="MD">Refeições</Text>
 
-          <S.AddMealButton>
+          <S.AddMealButton onPress={handleAddNewMeal}>
             <S.AddMealButtonIcon />
             <Heading size="SM" color="WHITE">
               Nova refeição
