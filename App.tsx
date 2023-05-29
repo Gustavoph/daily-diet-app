@@ -1,5 +1,3 @@
-import { StatusBar } from 'expo-status-bar'
-import { Text, View } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 
 import {
@@ -8,7 +6,8 @@ import {
   NunitoSans_400Regular as NunitoSans400Regular,
 } from '@expo-google-fonts/nunito-sans'
 
-import theme from '@themes/default'
+import theme from '@themes/index'
+import { Routes } from '@routes/index'
 
 export default function App() {
   const [isLoaded] = useFonts({
@@ -20,12 +19,5 @@ export default function App() {
     return null
   }
 
-  return (
-    <ThemeProvider theme={theme}>
-      <View>
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
-    </ThemeProvider>
-  )
+  return <ThemeProvider theme={theme}>{isLoaded && <Routes />}</ThemeProvider>
 }
