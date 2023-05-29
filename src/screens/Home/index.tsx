@@ -2,6 +2,8 @@ import logo from '@assets/logo.png'
 import * as S from './styles'
 import { PercentCard } from '@components/PercentCard'
 import { useNavigation } from '@react-navigation/native'
+import { Text } from '@components/Text'
+import { Heading } from '@components/Heading'
 
 export function Home() {
   const navigation = useNavigation()
@@ -21,25 +23,27 @@ export function Home() {
         <PercentCard percentage={97.86} onPress={handleGoDetails} />
 
         <S.MealsContainer>
-          <S.MealsTitle>Refeições</S.MealsTitle>
+          <Text size="MD">Refeições</Text>
 
           <S.AddMealButton>
             <S.AddMealButtonIcon />
-            <S.AddMealButtonText>Nova refeição</S.AddMealButtonText>
+            <Heading size="SM" color="WHITE">
+              Nova refeição
+            </Heading>
           </S.AddMealButton>
 
           <S.DailyMealsWrapper>
-            <S.DailyMealsTitle>12.08.22</S.DailyMealsTitle>
+            <Heading size="LG">12.08.22</Heading>
             <S.MealCard>
-              <S.MealHour>20:00</S.MealHour>
+              <Heading size="XS">20:00</Heading>
               <S.MealSeparator />
-              <S.MealName>Whey protein com leite</S.MealName>
+              <Text size="SM">Whey com leite </Text>
               <S.MealStatus color="green" />
             </S.MealCard>
             <S.MealCard>
-              <S.MealHour>16:00</S.MealHour>
+              <Heading size="XS">16:00</Heading>
               <S.MealSeparator />
-              <S.MealName>X-tudo</S.MealName>
+              <Text size="SM">X-tudo</Text>
               <S.MealStatus color="red" />
             </S.MealCard>
           </S.DailyMealsWrapper>

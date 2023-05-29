@@ -1,6 +1,6 @@
 import { TouchableOpacity } from 'react-native'
 import { Plus } from 'phosphor-react-native'
-import styled, { css } from 'styled-components/native'
+import styled from 'styled-components/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export const HomeContainer = styled(SafeAreaView)`
@@ -40,26 +40,10 @@ export const MealsContainer = styled.View`
   margin-top: 40px;
 `
 
-export const MealsTitle = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_1};
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-    font-size: ${theme.FONT_SIZE.MD}px;
-  `};
-`
-
 export const DailyMealsWrapper = styled.View`
   width: 100%;
   gap: 8px;
   margin-top: 32px;
-`
-
-export const DailyMealsTitle = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_1};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.LG}px;
-  `};
 `
 
 export const MealCard = styled.View`
@@ -82,24 +66,6 @@ export const MealSeparator = styled.View`
   border-color: ${({ theme }) => theme.COLORS.GRAY_4};
 `
 
-export const MealHour = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_1};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.XS}px;
-  `};
-`
-
-export const MealName = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_2};
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-    font-size: ${theme.FONT_SIZE.SM}px;
-  `};
-
-  margin-right: auto;
-`
-
 interface MealStatusProps {
   color: 'green' | 'red'
 }
@@ -107,6 +73,8 @@ interface MealStatusProps {
 export const MealStatus = styled.View<MealStatusProps>`
   height: 14px;
   width: 14px;
+
+  margin-left: auto;
 
   border-radius: 999px;
   background-color: ${({ theme, color = 'green' }) =>
@@ -126,14 +94,6 @@ export const AddMealButton = styled(TouchableOpacity)`
 
   border-radius: 6px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_2};
-`
-
-export const AddMealButtonText = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.WHITE};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.SM}px;
-  `};
 `
 
 export const AddMealButtonIcon = styled(Plus).attrs(({ theme }) => ({

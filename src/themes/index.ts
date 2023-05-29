@@ -33,3 +33,22 @@ export default {
     '2XL': 32,
   },
 } as const
+
+export type COLORS_TYPE =
+  | 'WHITE'
+  | 'BLACK'
+  | 'RED_DARK'
+  | 'RED_MID'
+  | 'RED_LIGHT'
+  | 'GREEN_DARK'
+  | 'GREEN_MID'
+  | 'GREEN_LIGHT'
+  | 'GRAY_7'
+  | 'GRAY_6'
+  | 'GRAY_5'
+  | 'GRAY_4'
+  | 'GRAY_3'
+  | 'GRAY_2'
+  | 'GRAY_1'
+
+export type SIZE_TYPE = 'XS' | 'SM' | 'MD' | 'LG' | 'XL' | '2XL'
