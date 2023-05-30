@@ -1,16 +1,17 @@
 import { TextInputProps } from 'react-native'
 import * as S from './styles'
 import { useTheme } from 'styled-components'
-import { useState } from 'react'
+import { forwardRef, useState } from 'react'
 
 interface InputProps extends TextInputProps {}
 
-export function Input({ ...rest }: InputProps) {
+export function InputComponent({ ...rest }: InputProps, ref: any) {
   const [isFocus, setIsFocus] = useState(false)
   const { COLORS } = useTheme()
 
   return (
     <S.Input
+      ref={ref}
       isFocus={isFocus}
       onBlur={() => setIsFocus(false)}
       onFocus={() => setIsFocus(true)}
@@ -19,3 +20,5 @@ export function Input({ ...rest }: InputProps) {
     />
   )
 }
+
+export const Input = forwardRef(InputComponent)

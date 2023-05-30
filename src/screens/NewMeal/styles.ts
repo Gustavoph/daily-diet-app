@@ -16,7 +16,6 @@ export const NewMealHeader = styled.View`
 
 export const NewMealWrapper = styled.View`
   flex: 1;
-  gap: 12px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_7};
 
   border-radius: 20px;
@@ -32,6 +31,25 @@ export const GoBackButton = styled(TouchableOpacity)`
 export const FormGroup = styled.View`
   gap: 4px;
   margin-bottom: 24px;
+`
+
+export const FormWrapper = styled.View`
+  flex-direction: row;
+  gap: 20px;
+`
+
+export const RegisterMealButton = styled(TouchableOpacity)`
+  width: 100%;
+  height: 50px;
+
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_2};
 `
 
 export const NewMealIcon = styled(ArrowLeft).attrs(({ theme }) => ({
