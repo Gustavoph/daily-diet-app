@@ -1,5 +1,5 @@
-import { Heading } from '@components/Heading'
 import * as S from './styles'
+import { Heading } from '@components/Heading'
 import { Input } from '@components/Input'
 import { TextArea } from '@components/TextArea'
 import { useNavigation } from '@react-navigation/native'
@@ -7,6 +7,7 @@ import { DatePicker } from '@components/DatePicker'
 import { Select } from '@components/Select'
 import { useState } from 'react'
 import { DismissKeyboard } from '@components/DismissKeyboard'
+import { CorrectMeal } from '@components/CorrectMeal'
 
 export function NewMeal() {
   const [option, setOption] = useState('yes')
@@ -81,6 +82,8 @@ export function NewMeal() {
         <S.RegisterMealButton>
           <Heading color="WHITE">Cadastrar refeição</Heading>
         </S.RegisterMealButton>
+
+        <CorrectMeal />
       </S.NewMealWrapper>
     </S.NewMealContainer>
   )

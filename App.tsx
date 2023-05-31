@@ -8,6 +8,7 @@ import {
 
 import theme from '@themes/index'
 import { Routes } from '@routes/index'
+import { StatusBar } from 'react-native'
 
 export default function App() {
   const [isLoaded] = useFonts({
@@ -19,5 +20,14 @@ export default function App() {
     return null
   }
 
-  return <ThemeProvider theme={theme}>{isLoaded && <Routes />}</ThemeProvider>
+  return (
+    <ThemeProvider theme={theme}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      {isLoaded && <Routes />}
+    </ThemeProvider>
+  )
 }
