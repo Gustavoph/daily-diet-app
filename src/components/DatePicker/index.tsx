@@ -7,14 +7,15 @@ import DateTimePicker, {
 } from '@react-native-community/datetimepicker'
 
 interface DatePickerProps {
+  value: Date
   format: string
   mode: 'date' | 'time'
+  setValue: (value: Date) => void
 }
 
-export function DatePicker({ format, mode }: DatePickerProps) {
+export function DatePicker({ format, mode, value, setValue }: DatePickerProps) {
   const dateRef = useRef<HTMLInputElement>(null)
 
-  const [date, setDate] = useState(new Date())
   const [showDate, setShowDate] = useState(false)
 
   const onChange = (
@@ -23,7 +24,7 @@ export function DatePicker({ format, mode }: DatePickerProps) {
   ) => {
     setShowDate(false)
     dateRef.current?.blur()
-    setDate(selectedDate || new Date())
+    setValue(selectedDate || new Date())
   }
 
   const onPress = () => {
@@ -35,11 +36,11 @@ export function DatePicker({ format, mode }: DatePickerProps) {
     <>
       <Input
         ref={dateRef}
-        value={dayjs(date).format(format)}
+        value={dayjs(value).format(format)}
         onFocus={onPress}
       />
       {showDate && (
-        <DateTimePicker mode={mode} value={date} onChange={onChange} />
+        <DateTimePicker mode={mode} value={value} onChange={onChange} />
       )}
     </>
   )
