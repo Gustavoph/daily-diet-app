@@ -5,7 +5,7 @@ import * as S from './styles'
 import { Text } from '@components/Text'
 import { Paper } from '@components/Paper'
 
-export function Details() {
+export function Statistics() {
   const navigation = useNavigation()
 
   function handleGoToHome() {
@@ -13,16 +13,16 @@ export function Details() {
   }
 
   return (
-    <S.DetailsContainer>
-      <S.DetailsHeader>
-        <S.DetailsButton onPress={handleGoToHome}>
-          <S.DetailsIcon />
-        </S.DetailsButton>
+    <S.StatisticsContainer>
+      <S.StatisticsHeader>
+        <S.StatisticsButton onPress={handleGoToHome}>
+          <S.StatisticsIcon />
+        </S.StatisticsButton>
         <Heading size="2XL">98.90%</Heading>
         <Text size="SM">das refeições dentro da dieta</Text>
-      </S.DetailsHeader>
+      </S.StatisticsHeader>
 
-      <S.DetailsWrapper>
+      <S.StatisticsWrapper>
         <Heading size="SM">Estatísticas gerais</Heading>
 
         <Paper style={{ width: '100%', marginTop: 10 }}>
@@ -46,7 +46,7 @@ export function Details() {
             <Text size="SM">refeições registradas</Text>
           </Paper>
         </S.InfoWrapper>
-      </S.DetailsWrapper>
-    </S.DetailsContainer>
+      </S.StatisticsWrapper>
+    </S.StatisticsContainer>
   )
 }

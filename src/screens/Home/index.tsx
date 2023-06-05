@@ -8,7 +8,11 @@ import { Heading } from '@components/Heading'
 export function Home() {
   const navigation = useNavigation()
 
-  function handleGoDetails() {
+  function handleGoStatistic() {
+    navigation.navigate('statistic')
+  }
+
+  function handleGoMealDetails() {
     navigation.navigate('details')
   }
 
@@ -24,7 +28,7 @@ export function Home() {
       </S.HomeHeader>
 
       <S.HomeWrapper>
-        <PercentCard percentage={97.86} onPress={handleGoDetails} />
+        <PercentCard percentage={97.86} onPress={handleGoStatistic} />
 
         <S.MealsContainer>
           <Text size="MD">Refeições</Text>
@@ -38,13 +42,13 @@ export function Home() {
 
           <S.DailyMealsWrapper>
             <Heading size="LG">12.08.22</Heading>
-            <S.MealCard>
+            <S.MealCard onPress={handleGoMealDetails}>
               <Heading size="XS">20:00</Heading>
               <S.MealSeparator />
               <Text size="SM">Whey com leite </Text>
               <S.MealStatus color="green" />
             </S.MealCard>
-            <S.MealCard>
+            <S.MealCard onPress={handleGoMealDetails}>
               <Heading size="XS">16:00</Heading>
               <S.MealSeparator />
               <Text size="SM">X-tudo</Text>

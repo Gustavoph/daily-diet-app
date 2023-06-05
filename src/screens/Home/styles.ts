@@ -46,7 +46,7 @@ export const DailyMealsWrapper = styled.View`
   margin-top: 32px;
 `
 
-export const MealCard = styled.View`
+export const MealCard = styled(TouchableOpacity)`
   height: 50px;
 
   gap: 12px;

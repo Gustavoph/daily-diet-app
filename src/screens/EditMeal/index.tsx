@@ -12,20 +12,20 @@ import { IncorrectMeal } from '@components/IncorrectMeal'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-const newMealSchema = z.object({
+const editMealSchema = z.object({
   name: z.string(),
   description: z.string(),
   createdAt: z.date(),
   isOnTheDiet: z.boolean(),
 })
 
-type NewMealSchemaType = z.infer<typeof newMealSchema>
+type EditMealSchemaType = z.infer<typeof editMealSchema>
 
-export function NewMeal() {
+export function EditMeal() {
   const navigation = useNavigation()
 
-  const { control, handleSubmit, reset } = useForm<NewMealSchemaType>({
-    resolver: zodResolver(newMealSchema),
+  const { control, handleSubmit, reset } = useForm<EditMealSchemaType>({
+    resolver: zodResolver(editMealSchema),
     defaultValues: { isOnTheDiet: true, createdAt: new Date() },
   })
 
@@ -33,19 +33,19 @@ export function NewMeal() {
     Promise.all([reset(), navigation.navigate('home')])
   }
 
-  function handleRegisterMeal(data: NewMealSchemaType) {
+  function handleRegisterMeal(data: EditMealSchemaType) {
     console.log('Aqui: ', data)
   }
 
   return (
-    <S.NewMealContainer>
-      <S.NewMealHeader>
+    <S.EditMealContainer>
+      <S.EditMealHeader>
         <S.GoBackButton onPress={handleGoBack}>
-          <S.NewMealIcon />
+          <S.EditMealIcon />
         </S.GoBackButton>
-        <Heading size="LG">Nova refeição</Heading>
-      </S.NewMealHeader>
-      <S.NewMealWrapper>
+        <Heading size="LG">Editar refeição</Heading>
+      </S.EditMealHeader>
+      <S.EditMealWrapper>
         <DismissKeyboard>
           <S.FormGroup>
             <Heading size="XS">Nome</Heading>
@@ -144,7 +144,7 @@ export function NewMeal() {
         </S.RegisterMealButton>
         {/* <CorrectMeal /> */}
         <IncorrectMeal />
-      </S.NewMealWrapper>
-    </S.NewMealContainer>
+      </S.EditMealWrapper>
+    </S.EditMealContainer>
   )
 }

@@ -3,12 +3,12 @@ import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const DetailsContainer = styled(SafeAreaView)`
+export const StatisticsContainer = styled(SafeAreaView)`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
 `
 
-export const DetailsHeader = styled.View`
+export const StatisticsHeader = styled.View`
   justify-content: center;
   align-items: center;
   padding-top: 32px;
@@ -18,7 +18,7 @@ export const DetailsHeader = styled.View`
   margin-bottom: 34px;
 `
 
-export const DetailsWrapper = styled.View`
+export const StatisticsWrapper = styled.View`
   flex: 1;
   gap: 12px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_7};
@@ -28,7 +28,7 @@ export const DetailsWrapper = styled.View`
   padding: 32px 24px;
 `
 
-export const DetailsButton = styled(TouchableOpacity)`
+export const StatisticsButton = styled(TouchableOpacity)`
   position: absolute;
   top: 20px;
   left: 20px;
@@ -52,7 +52,7 @@ export const InfoWrapper = styled.View`
   flex-direction: row;
 `
 
-export const DetailsIcon = styled(ArrowLeft).attrs(({ theme }) => ({
+export const StatisticsIcon = styled(ArrowLeft).attrs(({ theme }) => ({
   size: 24,
   color: theme.COLORS.GREEN_DARK,
 }))``
