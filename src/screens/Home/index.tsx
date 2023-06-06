@@ -1,24 +1,42 @@
+import dayjs from 'dayjs'
+import { SectionList } from 'react-native'
+import { useCallback, useState } from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+
 import logo from '@assets/logo.png'
 import * as S from './styles'
 import { PercentCard } from '@components/PercentCard'
-import { useNavigation } from '@react-navigation/native'
 import { Text } from '@components/Text'
 import { Heading } from '@components/Heading'
+import { fetchMealsStorage } from '@storage/meal.storage'
+import {
+  SectionMeal,
+  mapMealsToSectionList,
+} from '@utils/map-meals-to-section-list'
 
 export function Home() {
+  const [meals, setMeals] = useState<SectionMeal[]>([])
   const navigation = useNavigation()
 
   function handleGoStatistic() {
     navigation.navigate('statistics')
   }
 
-  function handleGoMealDetails() {
-    navigation.navigate('details')
+  function handleGoMealDetails(id: string) {
+    navigation.navigate('details', { id })
   }
 
   function handleAddNewMeal() {
     navigation.navigate('new')
   }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMealsStorage().then((meals) =>
+        setMeals(mapMealsToSectionList(meals)),
+      )
+    }, []),
+  )
 
   return (
     <S.HomeContainer>
@@ -39,21 +57,31 @@ export function Home() {
               Nova refeição
             </Heading>
           </S.AddMealButton>
-
           <S.DailyMealsWrapper>
-            <Heading size="LG">12.08.22</Heading>
-            <S.MealCard onPress={handleGoMealDetails}>
-              <Heading size="XS">20:00</Heading>
-              <S.MealSeparator />
-              <Text size="SM">Whey com leite </Text>
-              <S.MealStatus color="green" />
-            </S.MealCard>
-            <S.MealCard onPress={handleGoMealDetails}>
-              <Heading size="XS">16:00</Heading>
-              <S.MealSeparator />
-              <Text size="SM">X-tudo</Text>
-              <S.MealStatus color="red" />
-            </S.MealCard>
+            <SectionList
+              sections={meals}
+              scrollEnabled
+              keyExtractor={({ id }) => id}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <S.MealCard
+                  onPress={() => handleGoMealDetails(item.id)}
+                  style={{ marginBottom: 8 }}
+                >
+                  <Heading size="XS">
+                    {dayjs(item.createdAt).format('hh:mm')}
+                  </Heading>
+                  <S.MealSeparator />
+                  <Text size="SM">{item.name}</Text>
+                  <S.MealStatus color={item.isOnTheDiet ? 'green' : 'red'} />
+                </S.MealCard>
+              )}
+              renderSectionHeader={({ section: { title } }) => (
+                <Heading size="LG" style={{ marginBottom: 8 }}>
+                  {dayjs(title).format('DD.MM.YYYY')}
+                </Heading>
+              )}
+            />
           </S.DailyMealsWrapper>
         </S.MealsContainer>
       </S.HomeWrapper>

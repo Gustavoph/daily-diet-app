@@ -31,19 +31,22 @@ export const Avatar = styled.Image`
   border-color: ${({ theme }) => theme.COLORS.GRAY_2};
 `
 
-export const HomeWrapper = styled.ScrollView`
+export const HomeWrapper = styled.View`
   flex: 1;
   margin-top: 36px;
 `
 
 export const MealsContainer = styled.View`
   margin-top: 40px;
+  flex: 1;
 `
 
 export const DailyMealsWrapper = styled.View`
   width: 100%;
   gap: 8px;
   margin-top: 32px;
+  flex: 1;
+  margin-bottom: 24px;
 `
 
 export const MealCard = styled(TouchableOpacity)`

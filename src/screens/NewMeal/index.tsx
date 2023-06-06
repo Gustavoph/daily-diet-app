@@ -1,16 +1,19 @@
+import { useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+
+import { useNavigation } from '@react-navigation/native'
 import * as S from './styles'
 import { Heading } from '@components/Heading'
 import { Input } from '@components/Input'
 import { TextArea } from '@components/TextArea'
-import { useNavigation } from '@react-navigation/native'
 import { DatePicker } from '@components/DatePicker'
 import { Select } from '@components/Select'
 import { DismissKeyboard } from '@components/DismissKeyboard'
-// import { CorrectMeal } from '@components/CorrectMeal'
+import { CorrectMeal } from '@components/CorrectMeal'
 import { IncorrectMeal } from '@components/IncorrectMeal'
-import { useForm, Controller } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { createMealStorage } from '@storage/meal.storage'
 
 const newMealSchema = z.object({
   name: z.string(),
@@ -22,6 +25,7 @@ const newMealSchema = z.object({
 type NewMealSchemaType = z.infer<typeof newMealSchema>
 
 export function NewMeal() {
+  const [showBanner, setShowBanner] = useState<boolean | null>(null)
   const navigation = useNavigation()
 
   const { control, handleSubmit, reset } = useForm<NewMealSchemaType>({
@@ -33,8 +37,10 @@ export function NewMeal() {
     Promise.all([reset(), navigation.navigate('home')])
   }
 
-  function handleRegisterMeal(data: NewMealSchemaType) {
-    console.log('Aqui: ', data)
+  async function handleRegisterMeal(data: NewMealSchemaType) {
+    createMealStorage(data).then(() => {
+      setShowBanner(data.isOnTheDiet)
+    })
   }
 
   return (
@@ -142,8 +148,8 @@ export function NewMeal() {
         <S.RegisterMealButton onPress={handleSubmit(handleRegisterMeal)}>
           <Heading color="WHITE">Cadastrar refeição</Heading>
         </S.RegisterMealButton>
-        {/* <CorrectMeal /> */}
-        <IncorrectMeal />
+
+        {showBanner ? <CorrectMeal /> : <IncorrectMeal />}
       </S.NewMealWrapper>
     </S.NewMealContainer>
   )

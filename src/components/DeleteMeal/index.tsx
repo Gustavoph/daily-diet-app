@@ -7,9 +7,10 @@ import { Button } from '@components/Button'
 interface DeleteMealProps {
   isOpen: boolean
   onClose: () => void
+  onConfirm: () => void
 }
 
-export function DeleteMeal({ isOpen, onClose }: DeleteMealProps) {
+export function DeleteMeal({ isOpen, onClose, onConfirm }: DeleteMealProps) {
   return (
     <Modal visible={isOpen} onRequestClose={onClose} transparent={true}>
       <S.DeleteMealCentered>
@@ -25,7 +26,7 @@ export function DeleteMeal({ isOpen, onClose }: DeleteMealProps) {
             >
               <Heading>Cancelar</Heading>
             </Button>
-            <Button style={{ width: '47%' }}>
+            <Button style={{ width: '47%' }} onPress={onConfirm}>
               <Heading color="WHITE">Sim, excluir</Heading>
             </Button>
           </S.ButtonGroup>

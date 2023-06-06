@@ -3,9 +3,18 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
-export const DetailsMealContainer = styled(SafeAreaView)`
+interface StatusMealIndicatorProps {
+  color: 'red' | 'green'
+}
+
+interface DetailsMealContainerProps extends StatusMealIndicatorProps {}
+
+export const DetailsMealContainer = styled(
+  SafeAreaView,
+)<DetailsMealContainerProps>`
   flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ theme, color }) =>
+    color === 'green' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 `
 
 export const DetailsMealHeader = styled.View`
@@ -44,12 +53,13 @@ export const StatusMealWrapper = styled.View`
   align-items: center;
 `
 
-export const StatusMealIndicator = styled.View`
+export const StatusMealIndicator = styled.View<StatusMealIndicatorProps>`
   width: 8px;
   height: 8px;
 
   border-radius: 9999px;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_DARK};
+  background-color: ${({ theme, color }) =>
+    color === 'green' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
 `
 
 export const FormGroup = styled.View`
