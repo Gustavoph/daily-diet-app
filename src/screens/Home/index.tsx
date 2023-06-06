@@ -9,7 +9,7 @@ export function Home() {
   const navigation = useNavigation()
 
   function handleGoStatistic() {
-    navigation.navigate('statistic')
+    navigation.navigate('statistics')
   }
 
   function handleGoMealDetails() {
