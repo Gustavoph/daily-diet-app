@@ -46,7 +46,7 @@ export async function removeMealStorage(meal: MealDTO) {
   const storage = await fetchMealsStorage()
   const mealIndex = storage.findIndex((item) => item.id === meal.id)
 
-  if (mealIndex) {
+  if (mealIndex > -1) {
     storage.splice(mealIndex, 1)
     await AsyncStorage.setItem(MEAL_STORAGE, JSON.stringify(storage))
   }

@@ -14,7 +14,7 @@ export function IncorrectMeal() {
   }
 
   return (
-    <Modal visible={false}>
+    <Modal visible={true}>
       <S.ModalWrapper>
         <Heading size="XL" color="RED_DARK">
           Que pena!

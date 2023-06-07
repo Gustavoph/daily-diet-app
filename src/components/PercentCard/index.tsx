@@ -9,8 +9,10 @@ interface PercentCardProps extends TouchableOpacityProps {
 }
 
 export function PercentCard({ percentage, ...rest }: PercentCardProps) {
+  const color = percentage >= 50 ? 'green' : 'red'
+
   return (
-    <S.PercentCard {...rest}>
+    <S.PercentCard color={color} {...rest}>
       <S.PercentIcon />
       <Heading size="2XL">{percentage}%</Heading>
       <Text size="SM">das refeições dentro da dieta</Text>

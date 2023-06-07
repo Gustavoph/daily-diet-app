@@ -34,7 +34,7 @@ export function NewMeal() {
   })
 
   function handleGoBack() {
-    Promise.all([reset(), navigation.navigate('home')])
+    Promise.all([reset(), setShowBanner(null), navigation.navigate('home')])
   }
 
   async function handleRegisterMeal(data: NewMealSchemaType) {
@@ -149,7 +149,8 @@ export function NewMeal() {
           <Heading color="WHITE">Cadastrar refeição</Heading>
         </S.RegisterMealButton>
 
-        {showBanner ? <CorrectMeal /> : <IncorrectMeal />}
+        {showBanner && <CorrectMeal />}
+        {showBanner === false && <IncorrectMeal />}
       </S.NewMealWrapper>
     </S.NewMealContainer>
   )

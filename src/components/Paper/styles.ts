@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 
 interface PaperContainerProps {
   color?: COLORS_TYPE
+  w?: string
 }
 
 export const PaperContainer = styled.View<PaperContainerProps>`
@@ -12,5 +13,6 @@ export const PaperContainer = styled.View<PaperContainerProps>`
   gap: 8px;
 
   align-items: center;
+  width: ${({ w }) => w};
   background-color: ${({ theme, color = 'GRAY_6' }) => theme.COLORS[color]};
 `

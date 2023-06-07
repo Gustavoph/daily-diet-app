@@ -2,7 +2,11 @@ import { TouchableOpacity } from 'react-native'
 import { ArrowUpRight } from 'phosphor-react-native'
 import styled from 'styled-components/native'
 
-export const PercentCard = styled(TouchableOpacity)`
+interface PercentCardProps {
+  color: 'red' | 'green'
+}
+
+export const PercentCard = styled(TouchableOpacity)<PercentCardProps>`
   position: relative;
 
   width: 100%;
@@ -12,7 +16,8 @@ export const PercentCard = styled(TouchableOpacity)`
   align-items: center;
 
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ theme, color }) =>
+    color === 'green' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 `
 
 export const PercentIcon = styled(ArrowUpRight).attrs(({ theme }) => ({

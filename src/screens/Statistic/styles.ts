@@ -3,9 +3,16 @@ import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const StatisticsContainer = styled(SafeAreaView)`
+interface StatisticsContainerProps {
+  color: 'red' | 'green'
+}
+
+export const StatisticsContainer = styled(
+  SafeAreaView,
+)<StatisticsContainerProps>`
   flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ theme, color }) =>
+    color === 'green' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 `
 
 export const StatisticsHeader = styled.View`

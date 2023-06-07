@@ -13,10 +13,15 @@ import {
   SectionMeal,
   mapMealsToSectionList,
 } from '@utils/map-meals-to-section-list'
+import { mealsReducer } from '@utils/mealsReducer'
+import { MealDTO } from '@dtos/meal'
 
 export function Home() {
-  const [meals, setMeals] = useState<SectionMeal[]>([])
+  const [meals, setMeals] = useState<MealDTO[]>([])
+  const [sectionMeals, setSectionMeals] = useState<SectionMeal[]>([])
+
   const navigation = useNavigation()
+  const { percentage } = mealsReducer(meals)
 
   function handleGoStatistic() {
     navigation.navigate('statistics')
@@ -32,9 +37,10 @@ export function Home() {
 
   useFocusEffect(
     useCallback(() => {
-      fetchMealsStorage().then((meals) =>
-        setMeals(mapMealsToSectionList(meals)),
-      )
+      fetchMealsStorage().then((meals) => {
+        setMeals(meals)
+        setSectionMeals(mapMealsToSectionList(meals))
+      })
     }, []),
   )
 
@@ -46,7 +52,7 @@ export function Home() {
       </S.HomeHeader>
 
       <S.HomeWrapper>
-        <PercentCard percentage={97.86} onPress={handleGoStatistic} />
+        <PercentCard percentage={percentage} onPress={handleGoStatistic} />
 
         <S.MealsContainer>
           <Text size="MD">Refeições</Text>
@@ -59,7 +65,7 @@ export function Home() {
           </S.AddMealButton>
           <S.DailyMealsWrapper>
             <SectionList
-              sections={meals}
+              sections={sectionMeals}
               scrollEnabled
               keyExtractor={({ id }) => id}
               showsVerticalScrollIndicator={false}
